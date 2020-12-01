@@ -1,17 +1,19 @@
 import './App.scss';
 import React from 'react';
-import Main from './components/Main';
-import { ViewportProvider } from './contexts/context';
+import Sidebar from './components/Sidebar/Sidebar';
+import Chat from './components/Chat/Chat';
+import { useViewport } from './contexts/context';
 
 function App() {
+  const { windowWidth, breakpoint } = useViewport();
+
   return (
-    <ViewportProvider>
-      <div className="app">
-        <div className="app__body">
-          <Main />
-        </div>
+    <div className="app">
+      <div className="app__body">
+        <Sidebar />
+        {windowWidth < breakpoint ? null : <Chat />}
       </div>
-    </ViewportProvider>
+    </div>
   );
 }
 
